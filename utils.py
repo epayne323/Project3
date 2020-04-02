@@ -15,7 +15,8 @@ wn = WordNetLemmatizer()
 
 stop_words = stopwords.words('english')
 stop_words.extend(['said', 'would', 'subject', 'use', 'also', 'like', 'know', 'well', ' could', 'thing', '...', 'want', 'yeah', 'look', 'take', 'make', 'think', 'okay', 'right', 'come', 'become', 'you.s', 'name',
-                  'get', 'people', 'one', 'http', 'say', 'time', 'www', 'reddit', 'com'])
+                  'get', 'people', 'one', 'http', 'say', 'time', 'www', 'reddit', 'com', 'subreddit',
+                  'www.', '.com', 'reddit.'])
 
 stop_words = set(stop_words)
     
