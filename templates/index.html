@@ -12,23 +12,290 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
 
-  <body>
-
-    <div class="container-fluid">
-      <div class="jumbotron">
-        <h1 class="display-4">Reddit Comments Classifier</h1>
-        <p class="lead">Analyzing comments from the most popular subreddits using Latent Dirichlet Allocation.</p>
-      </div>
-    </div>
-  
-    <div class="container">
-      <div class="row my-3">
-        <div class="col-md-2">
-          <h4>Select a subreddit!</h4>
+  <div class="container-fluid">
+    <div class="jumbotron" id="jumbotron">
+      <h2 class="display-4">Reddit Comments Classifier</h2>
+      <p class="lead">Analyzing comments extracted from the most popular subreddits using from Python Reddit API Wrapper with Latent Dirichlet Allocation.</p>
+      <div class="row">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3 mr-0">
+          <button type="button" class="float-right" id="pyLDAvis">
+            <a href="reddit_pyLDAvis.html">Show LDA vizualization</a>
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-  </body>
-</head>
+  <div class="container-fluid">
+    <div class="row my-2">
+      <!-- <div class="col-md-3 ml-2">
+        <h4>Select a subreddit:</h4>
+        <div class="form-group">
+          <select class="form-control" id="sel1">
+            <option selected>Select subreddit</option>
+            <option value="AskReddit">AskReddit</option>
+            <option value="Coronavirus">Coronavirus</option>
+            <option value="worldnews">worldnews</option>
+            <option value="pics">pics</option>
+            <option value="funny">funny</option>
+            <option value="politics">politics</option>
+            <option value="Minecraft">Minecraft</option>
+            <option value="modernwarfare">modernwarfare</option>
+            <option value="ChoosingBeggars">ChoosingBeggars</option>
+            <option value="videos">videos</option>
+            <option value="leagueoflegends">leagueoflegends</option>
+            <option value="PublicFreakout">PublicFreakout</option>
+            <option value="NoStupidQuestions">NoStupidQuestions</option>
+            <option value="gaming">gaming</option>
+            <option value="aww">aww</option>
+            <option value="pcmasterrace">pcmasterrace</option>
+            <option value="memes">memes</option>
+            <option value="pathofexile">pathofexile</option>
+            <option value="movies">movies</option>
+            <option value="todayilearned">todayilearned</option>
+            <option value="xboxone">xboxone</option>
+            <option value="teenagers">teenagers</option>
+            <option value="explainlikeimfive">explainlikeimfive</option>
+            <option value="insanepeoplefacebook">insanepeoplefacebook</option>
+            <option value="AskMen">AskMen</option>
+            <option value="NintendoSwitch">NintendoSwitch</option>
+            <option value="trashy">trashy</option>
+            <option value="gtaonline">gtaonline</option>
+            <option value="dataisbeautiful">dataisbeautiful</option>
+            <option value="personalfinance">personalfinance</option>
+            <option value="DestinyTheGame">DestinyTheGame</option>
+            <option value="PS4">PS4</option>
+            <option value="Tinder">Tinder</option>
+            <option value="relationship_advice">relationship_advice</option>
+            <option value="EscapefromTarkov">EscapefromTarkov</option>
+            <option value="news">news</option>
+            <option value="discordapp">discordapp</option>
+            <option value="wallstreetbets">wallstreetbets</option>
+            <option value="tifu">tifu</option>
+            <option value="mildlyinteresting">mildlyinteresting</option>
+            <option value="interestingasfuck">interestingasfuck</option>
+            <option value="LivestreamFail">LivestreamFail</option>
+            <option value="Jokes">Jokes</option>
+            <option value="ffxiv">ffxiv</option>
+            <option value="Showerthoughts">Showerthoughts</option>
+            <option value="Wellthatsucks">Wellthatsucks</option>
+            <option value="witcher">witcher</option>
+            <option value="BlackPeopleTwitter">BlackPeopleTwitter</option>
+            <option value="nba">nba</option>
+            <option value="anime">anime</option>
+            <option value="DnD">DnD</option>
+            <option value="GlobalOffensive">GlobalOffensive</option>
+            <option value="nextfuckinglevel">nextfuckinglevel</option>
+            <option value="IAmA">IAmA</option>
+            <option value="wow">wow</option>
+            <option value="thedivision">thedivision</option>
+            <option value="NBA2k">NBA2k</option>
+            <option value="dankmemes">dankmemes</option>
+            <option value="WTF">WTF</option>
+            <option value="buildapc">buildapc</option>
+            <option value="coolguides">coolguides</option>
+            <option value="HistoryMemes">HistoryMemes</option>
+            <option value="oddlysatisfying">oddlysatisfying</option>
+            <option value="AskWomen">AskWomen</option>
+            <option value="relationships">relationships</option>
+            <option value="askscience">askscience</option>
+            <option value="Amd">Amd</option>
+            <option value="dndnext">dndnext</option>
+            <option value="OutOfTheLoop">OutOfTheLoop</option>
+            <option value="AmItheAsshole">AmItheAsshole</option>
+            <option value="2007scape">2007scape</option>
+            <option value="sex">sex</option>
+            <option value="IdiotsInCars">IdiotsInCars</option>
+            <option value="unpopularopinion">unpopularopinion</option>
+            <option value="TwoXChromosomes">TwoXChromosomes</option>
+            <option value="Piracy">Piracy</option>
+            <option value="Unexpected">Unexpected</option>
+            <option value="gifs">gifs</option>
+            <option value="television">television</option>
+            <option value="copypasta">copypasta</option>
+            <option value="insaneparents">insaneparents</option>
+            <option value="soccer">soccer</option>
+            <option value="China_Flu">China_Flu</option>
+            <option value="Twitch">Twitch</option>
+            <option value="Rainbow6">Rainbow6</option>
+            <option value="StardewValley">StardewValley</option>
+            <option value="PrequelMemes">PrequelMemes</option>
+            <option value="OldSchoolCool">OldSchoolCool</option>
+            <option value="europe">europe</option>
+            <option value="pokemon">pokemon</option>
+            <option value="SandersForPresident">SandersForPresident</option>
+            <option value="blackdesertonline">blackdesertonline</option>
+            <option value="jailbreak">jailbreak</option>
+            <option value="classicwow">classicwow</option>
+            <option value="borderlands3">borderlands3</option>
+            <option value="RoastMe">RoastMe</option>
+            <option value="trees">trees</option>
+            <option value="feedthebeast">feedthebeast</option>
+            <option value="WatchPeopleDieInside">WatchPeopleDieInside</option>
+            <option value="TrueOffMyChest">TrueOffMyChest</option>
+            <option value="reddeadredemption">reddeadredemption</option>
+            <option value="techsupport">techsupport</option>
+            <option value="apexlegends">apexlegends</option>
+            <option value="legaladvice">legaladvice</option>
+            <option value="australia">australia</option>
+            <option value="Instagramreality">Instagramreality</option>
+            <option value="assholedesign">assholedesign</option>
+            <option value="MonsterHunterWorld">MonsterHunterWorld</option>
+            <option value="apple">apple</option>
+            <option value="Fitness">Fitness</option>
+            <option value="TheSilphRoad">TheSilphRoad</option>
+            <option value="investing">investing</option>
+            <option value="Games">Games</option>
+            <option value="AnimalCrossing">AnimalCrossing</option>
+            <option value="MMA">MMA</option>
+            <option value="smashbros">smashbros</option>
+            <option value="FortNiteBR">FortNiteBR</option>
+            <option value="FIFA">FIFA</option>
+            <option value="Cooking">Cooking</option>
+            <option value="sysadmin">sysadmin</option>
+            <option value="OnePiece">OnePiece</option>
+            <option value="Warframe">Warframe</option>
+            <option value="PewdiepieSubmissions">PewdiepieSubmissions</option>
+            <option value="CrappyDesign">CrappyDesign</option>
+            <option value="manga">manga</option>
+            <option value="pcgaming">pcgaming</option>
+            <option value="LSD">LSD</option>
+            <option value="summonerschool">summonerschool</option>
+            <option value="DotA2">DotA2</option>
+            <option value="MurderedByWords">MurderedByWords</option>
+            <option value="Nioh">Nioh</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Steam">Steam</option>
+            <option value="Whatcouldgowrong">Whatcouldgowrong</option>
+            <option value="Cringetopia">Cringetopia</option>
+            <option value="mildlyinfuriating">mildlyinfuriating</option>
+            <option value="WayOfTheBern">WayOfTheBern</option>
+            <option value="StarWars">StarWars</option>
+            <option value="Animemes">Animemes</option>
+            <option value="Overwatch">Overwatch</option>
+            <option value="SquaredCircle">SquaredCircle</option>
+            <option value="offmychest">offmychest</option>
+            <option value="formula1">formula1</option>
+            <option value="LifeProTips">LifeProTips</option>
+            <option value="RimWorld">RimWorld</option>
+            <option value="thesims">thesims</option>
+            <option value="HydroHomies">HydroHomies</option>
+            <option value="skyrimmods">skyrimmods</option>
+            <option value="therewasanattempt">therewasanattempt</option>
+            <option value="skyrim">skyrim</option>
+            <option value="nosleep">nosleep</option>
+            <option value="eu4">eu4</option>
+            <option value="DunderMifflin">DunderMifflin</option>
+            <option value="space">space</option>
+            <option value="civ">civ</option>
+            <option value="marvelstudios">marvelstudios</option>
+            <option value="UnresolvedMysteries">UnresolvedMysteries</option>
+            <option value="totalwar">totalwar</option>
+            <option value="OurPresident">OurPresident</option>
+            <option value="assassinscreed">assassinscreed</option>
+            <option value="CODWarzone">CODWarzone</option>
+            <option value="netflix">netflix</option>
+            <option value="AskHistorians">AskHistorians</option>
+            <option value="donaldglover">donaldglover</option>
+            <option value="MonsterHunter">MonsterHunter</option>
+            <option value="DivinityOriginalSin">DivinityOriginalSin</option>
+            <option value="MovieDetails">MovieDetails</option>
+            <option value="science">science</option>
+            <option value="conspiracy">conspiracy</option>
+            <option value="canada">canada</option>
+            <option value="NoFap">NoFap</option>
+            <option value="boardgames">boardgames</option>
+            <option value="SelfAwarewolves">SelfAwarewolves</option>
+            <option value="starterpacks">starterpacks</option>
+            <option value="Breath_of_the_Wild">Breath_of_the_Wild</option>
+            <option value="Borderlands">Borderlands</option>
+            <option value="rupaulsdragrace">rupaulsdragrace</option>
+            <option value="hiphopheads">hiphopheads</option>
+            <option value="shrooms">shrooms</option>
+            <option value="destiny2">destiny2</option>
+            <option value="singapore">singapore</option>
+            <option value="HumansBeingBros">HumansBeingBros</option>
+            <option value="Windows10">Windows10</option>
+            <option value="CrackWatch">CrackWatch</option>
+            <option value="nvidia">nvidia</option>
+            <option value="MechanicalKeyboards">MechanicalKeyboards</option>
+            <option value="italy">italy</option>
+            <option value="goddesses">goddesses</option>
+            <option value="SkincareAddiction">SkincareAddiction</option>
+            <option value="Futurology">Futurology</option>
+            <option value="wholesomememes">wholesomememes</option>
+            <option value="malefashionadvice">malefashionadvice</option>
+            <option value="WhitePeopleTwitter">WhitePeopleTwitter</option>
+            <option value="bodyweightfitness">bodyweightfitness</option>
+            <option value="Music">Music</option>
+            <option value="darksouls3">darksouls3</option>
+            <option value="cars">cars</option>
+            <option value="JusticeServed">JusticeServed</option>
+            <option value="changemyview">changemyview</option>
+            <option value="iphone">iphone</option>
+            <option value="diablo3">diablo3</option>
+            <option value="BokuNoHeroAcademia">BokuNoHeroAcademia</option>
+            <option value="Diablo">Diablo</option>
+            <option value="RocketLeague">RocketLeague</option>
+            <option value="books">books</option>
+            <option value="CatastrophicFailure">CatastrophicFailure</option>
+            <option value="help">help</option>
+            <option value="hoi4">hoi4</option>
+            <option value="whatisthisthing">whatisthisthing</option>
+            <option value="cursedcomments">cursedcomments</option>
+            <option value="MakeMeSuffer">MakeMeSuffer</option>
+            <option value="Philippines">Philippines</option>
+            <option value="ProgrammerHumor">ProgrammerHumor</option>
+            <option value="MadeMeSmile">MadeMeSmile</option>
+            <option value="france">france</option>
+            <option value="ShitPostCrusaders">ShitPostCrusaders</option>
+            <option value="StardustCrusaders">StardustCrusaders</option>
+            <option value="Drugs">Drugs</option>
+            <option value="Celebs">Celebs</option>
+            <option value="AskCulinary">AskCulinary</option>
+            <option value="FanTheories">FanTheories</option>
+            <option value="InternetStars">InternetStars</option>
+            <option value="Fallout">Fallout</option>
+            <option value="StateOfDecay">StateOfDecay</option>
+            <option value="PersonalFinanceCanada">PersonalFinanceCanada</option>
+            <option value="NatureIsFuckingLit">NatureIsFuckingLit</option>
+            <option value="pokemongo">pokemongo</option>
+            <option value="DataHoarder">DataHoarder</option>
+            <option value="runescape">runescape</option>
+            <option value="grandorder">grandorder</option>
+            <option value="nfl">nfl</option>
+            <option value="fo76">fo76</option>
+            <option value="me_irl">me_irl</option>
+            <option value="tipofmytongue">tipofmytongue</option>
+            <option value="de">de</option>
+            <option value="electronic_cigarette">electronic_cigarette</option>
+            <option value="youtube">youtube</option>
+            <option value="Roms">Roms</option>
+            <option value="elderscrollsonline">elderscrollsonline</option>
+            <option value="facepalm">facepalm</option>
+            <option value="Frugal">Frugal</option>
+            <option value="Stellaris">Stellaris</option>
+            <option value="UpliftingNews">UpliftingNews</option>
+            <option value="TooAfraidToAsk">TooAfraidToAsk</option>
+            <option value="PoliticalHumor">PoliticalHumor</option>
+            <option value="fireemblem">fireemblem</option>
+            <option value="Doom">Doom</option>
+            <option value="playark">playark</option>
+            <option value="technology">technology</option>
+          </select>
+        </div>
+      </div> -->
+      <div class="col-md-9">
+        <div id="bar-plot"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="../static/js/app.js"></script>
+</body>
